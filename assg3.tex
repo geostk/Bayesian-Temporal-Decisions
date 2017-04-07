@@ -56,6 +56,19 @@ Kostas Bekris\\
 \end{enumerate}
 
 \item Question 2
+\begin{enumerate}
+\item $P(Burglary|JohnCalls = true, MaryCalls = true)$
+\\Factors:$ P(Burglary), P(EQ)$, $P(Alarm|EQ, Burglary)$,$ P(JohnCalls|Alarm)$, $P(MaryCalls|Alarm)$
+\\Elimination Order: EQ, Alarm
+\\
+\\$f_{1}(Alarm, Burglary) = \sum_{EQ} P(EQ) P(Alarm, EQ, Burglary)$
+\\$f_{2}(John, Mary, Alarm, EQ) = \sum_{Alarm}f_{1}(Alarm,Burglary)P(John|Alarm)P(Mary|Alarm)$
+\\$P(Burglary|JohnCalls,MaryCalls) = P(Burglary)f_{2}(John, Mary, Alarm, Burglary)$
+\\
+\\Normalize the above to find $P(Burglary|JohnCalls = true, MaryCalls = true)$
+\item
+\item
+\end {enumerate}
 
 \item Question 3
 \begin{enumerate}
@@ -70,6 +83,12 @@ Kostas Bekris\\
 \end{enumerate}
 
 \item Question 4
+\begin {enumerate}
+\item
+\item
+\item
+\item
+\end {enumerate}
 
 \item Question 5a
 
@@ -87,4 +106,3 @@ Kostas Bekris\\
 
 \end{enumerate}
 \end{document}
-
