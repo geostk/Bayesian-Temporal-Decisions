@@ -84,10 +84,19 @@ Kostas Bekris\\
 
 \item Question 4
 \begin {enumerate}
-\item
-\item
-\item
-\item
+\item $(.7 * 4000) - (.3 * 1400) - 3000 = -620$
+\item $P(Pass) = P(Pass \land q^+) \vee P(Pass \land q^-) = P(Pass|q^+) + P(Pass|q^-) =
+\\(0.8 * 0.7) + (0.35 * 0.3) = 0.655$
+\\$P(\neg Pass | q^+) = .2, P(\neg Pass | q^-) = .65$
+\\$P(q^+ | Pass) = P(Pass | q^+) * P(q^+) / P(Pass) = 0.8 * 0.7 / 0.665 = 0.842$
+\\$P(q^+ | \neg Pass) = P(\neg Pass | q^+) * P(q^+) / P(\neg Pass) = 0.2 * 0.7 / 0.335 = 0.418$
+\\$P(q^- | Pass) = P(Pass | q^-) * P(q^-) / P(Pass) = 0.35 * 0.3 / 0.665 = 0.158$
+\\$P(q^+ | \neg Pass) = P(\neg Pass | q^+) * P(q^+) / P(\neg Pass) = 0.65 * 0.3 / 0.335 = 0.582$
+\item Utility of $Pass(c1) = (.842 * 4000) - (.158 * 1400) - 3100 = 46.8$
+\\Utility of $\neg Pass(c1) = (.418 * 4000) - (.582 * 1400) - 3100 = -2242.8$
+\\It is therefore better to buy the car if it passes, and better not to buy the car if it fails.
+\item As seen in (a) and (c), there is significant value to taking the car to the mechanic first.
+\\It should be done, as we can be assured we are likely making a wiser decision purchasing if the car passes, but we can also safely choose not to buy it if it fails. Not visiting the mechanic makes purchasing the car more unreliable, and spending 100 dollars on a failed car is better than risking a purchase that we are more uncertain of.
 \end {enumerate}
 
 \item Question 5a
