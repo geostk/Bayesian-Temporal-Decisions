@@ -31,14 +31,14 @@ Kostas Bekris\\
 \item Question 1
 \begin{enumerate}
 
-\item a) 
+\item
 \begin{enumerate}
 \item $P(A, B, C, D, E) =$
 \item $P(A)P(B)P(C)P(D|A,B)P(E|B,C) =$
 \item $(0.2)(0.5)(0.8)(0.1)(0.3) = 0.0024$
 \end{enumerate}
 
-\item b) 
+\item 
 \begin{enumerate}
 \item $P(\neg A)P(\neg B)P(\neg C)P(\neg D)P(\neg E) =$ 
 \item $P(\neg A)P(\neg B)P(\neg C)P(\neg D|\neg A, \neg B)P(\neg E|\neg B, \neg C) =$
@@ -46,7 +46,7 @@ Kostas Bekris\\
 \item $(0.8)(0.5)(0.2)(0.1)(0.8) = 0.0064$
 \end{enumerate}
 
-\item c) 
+\item
 \begin{enumerate}
 \item $P(\neg A | B, C, D, E) =\frac{P(\neg A, B, C, D, E)}{P(\neg A, B, C, D, E) + P(A, B, C, D, E)}$ 
 \item  $P(\neg A, B, C, D, E) = P(\neg A)P(B)P(C)P(D |\neg A, B)P(E | B, C) = $ \item $(0.8)(0.5)(0.8)(0.6)(0.3) = 0.0576$ 
@@ -72,14 +72,22 @@ Kostas Bekris\\
 
 \item Question 3
 \begin{enumerate}
-\item a) 
+\item
 \begin{enumerate}
 \item By definition: $P(X|MB(X)) = P(X|Parents,Children,PofC) $
 \item FJPD for parents: $P(Y_i, ..., Y_n) = \prod{i = 1}^{n} P(Y_i | Z_{i}1)$ 
 \item All together: 
 \end{enumerate}
-\item b)
-\item c)
+\item Four states: \{\{Cloudy=True,Rain=True\}, \{Cloudy=True,Rain=False\}, \\
+ \{Cloudy=False,Rain=True\},\{Cloudy=False,Rain=False\}\}
+\item Q = \[
+\begin{bmatrix}
+	.5 & .10 & .80 & ? \\
+	? & ? & ? & ? \\
+	? & ? & ? & ? \\
+	? & ? & ? & ?
+\end{bmatrix}
+\]
 \end{enumerate}
 
 \item Question 4
