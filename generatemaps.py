@@ -3,16 +3,18 @@ import itertools
 import random
 from filtrieren import TransitionModel, ObservationModel
 
-terrains = ['N']*40 + ['H']*20 + ['T']*20 + ['B']*10
-random.shuffle(terrains)
-GrossesGelaende = np.reshape(np.asmatrix(terrains), (9, 10))
+def generatemap():
+	terrains = ['N']*40 + ['H']*20 + ['T']*20 + ['B']*10
+	random.shuffle(terrains)
+	GrossesGelaende = np.reshape(np.asmatrix(terrains), (9, 10))
+	return GrossesGelaende
 
-def startingplace():
+def startingplace(mappo):
 	indX = random.randrange(0,9)
 	indY = random.randrange(0,9)
 
-	if GrossesGelaende[indX,indY] == 'B':
-		return startingplace()
+	if mappo[indX,indY] == 'B':
+		return startingplace(mappo)
 	else:
 		return (indX,indY)
 
@@ -25,37 +27,37 @@ def randomactions():
 
 	return actionseq
 
-def PointsAndReadings(start, actionseq):
+def PointsAndReadings(mappo, start, actionseq):
 	points = [] 
 	readings = []
 
 	cellfrom = start
 	for i in range(0, 100):
-		latest = tuple(TransitionModel(cellfrom, actionseq[i]))
-		print i
+		latest = tuple(TransitionModel(mappo, cellfrom, actionseq[i]))
 		points.append(latest)
-		readings.append(ObservationModel(GrossesGelaende[latest]))
+		readings.append(ObservationModel(mappo[latest]))
 		cellfrom = latest
 
 	return points,readings
 
-def generatefile(index):
-	sp = startingplace()
-	actionseq = randomactions()
-	points, readings = PointsAndReadings(sp, actionseq)
+def generatefiles(mappo, mapID):
+	for i in range(0, 10):
+		sp = startingplace(mappo)
+		actionseq = randomactions()
+		points, readings = PointsAndReadings(mappo, sp, actionseq)
 	
-	target = open("output" + str(index) + ".txt", "w")
+		target = open("output" + str(mapID) + "-" + str(i) + ".txt", "w")
+		target.write("mapID: " + str(mapID) + "; path " + str(i) + "\n" + str(mappo) + "\n")
+		target.write("x_0y_0: " + str(sp) + "\n")
+		target.write("x_iy_i: " + str(points) + "\n")
+		target.write("\\alpha_i: " + str(actionseq) + "\n")
+		target.write("\\epsilon_i: " + str(readings))
 
-	target.write(str(GrossesGelaende) + "\n")
-	target.write("x_0y_0: " + str(sp) + "\n")
-	target.write("x_iy_i: " + str(points) + "\n")
-	target.write("\\alpha_i: " + str(actionseq) + "\n")
-	target.write("\\epsilon_i: " + str(readings))
-
-	target.close()
+		target.close()
 
 def main():
-	generatefile(0)
+	for i in range(0, 10):
+		generatefiles(generatemap(), i)
 
 if __name__ == "__main__":
 	main()

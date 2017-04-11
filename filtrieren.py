@@ -11,30 +11,30 @@ prior = np.matrix(
 [0.125, 0.125, 0.125], 
 [0.125, 0, 0.125]]) #prior[2,1] == 'B'
 
-actions = ['Right', 'Right', 'Down', 'Down']
+actions = ['R', 'R', 'D', 'D']
 readings = ['N', 'N', 'H', 'H']
 
-def TransitionModel(cellfromimmutable, action):
+def TransitionModel(mappo, cellfromimmutable, action):
 	cellfrom = list(cellfromimmutable)
 	cellto = cellfrom #cellto changes when cellfrom changes. bc python
-	if action == 'Right' or action == 'R':
+	if action == 'R':
 		cellto[0] += 1
-	elif action == 'Left' or action == 'L':
+	elif action == 'L':
 		cellto[0] -= 1
-	elif action == 'Up' or action == 'U':
+	elif action == 'U':
 		cellto[1] += 1
-	elif action == 'Down' or action == 'D':
+	elif action == 'D':
 		cellto[1] -= 1
 	else:
 		return nil
 
-	if cellto[0] <= -1 or cellto[0] >= 3:
+	if cellto[0] <= -1 or cellto[1] <= -1:
 		return list(cellfromimmutable)
-	elif cellto[1] <= -1 or cellto[1] >= 3:
+	elif cellto[0] >= np.shape(mappo)[0] or cellto[1] >= np.shape(mappo)[1]:
 		return list(cellfromimmutable)
-	elif cellto[0] == 1 and cellto[1] == 2:
+	elif (mappo[tuple(cellto)] == 'B'):
 		return list(cellfromimmutable)
-	
+
 	if random.randrange(0, 100) < 90:
 		return cellto
 	else:
