@@ -62,5 +62,6 @@ def ObservationModel(reading):
 #for x in np.nditer(prior):
 #	print x
 
-print TransitionModel((2,0), 'Right') #cannot do so, other is blocked
-print ObservationModel(terrain[2,0])
+def main():
+	print TransitionModel((2,0), 'Right') #cannot do so, other is blocked
+	print ObservationModel(terrain[2,0])
