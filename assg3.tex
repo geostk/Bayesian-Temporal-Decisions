@@ -74,9 +74,9 @@ Kostas Bekris\\
 \begin{enumerate}
 \item
 \begin{enumerate}
-\item By definition: $P(X|MB(X)) = P(X|Parents,Children,PofC) $
-\item FJPD for parents: $P(Y_i, ..., Y_n) = \prod{i = 1}^{n} P(Y_i | Z_{i}1)$ 
-\item All together: 
+\item By definition: $P(X|MB(X)) = P(X|\{U_1, ..., U_m\}, \{Y_1, ..., Y_n\}, \{Z_1, ..., Z_j\}) $
+\item FJPD for parents: $P(Y_i, ..., Y_n) = \prod_{i=1}^{n} P(Y_i | Z_{i1}...)$ 
+\item End goal: $\alpha P(X|U_1, ..., U_m) \prod_{Y_i} P(Y_i | Z_{i1} ...)$
 \end{enumerate}
 \item Four states: \{\{Cloudy=True,Rain=True\}, \{Cloudy=True,Rain=False\}, \\
  \{Cloudy=False,Rain=True\},\{Cloudy=False,Rain=False\}\}
