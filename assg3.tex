@@ -66,8 +66,8 @@ Kostas Bekris\\
 \\$P(Burglary|JohnCalls,MaryCalls) = P(Burglary)f_{2}(John, Mary, Alarm, Burglary)$
 \\
 \\Normalize the above to find $P(Burglary|JohnCalls = true, MaryCalls = true)$
-\item
-\item
+\item Approximately 9 operations, including the division for a. Enumerating it, meanwhile, would require 15 operations.
+\item For variable enumeration, the complexity should be $O(2^n)$. Due to the structure of the network, the complexity for variable elimination should be similarly high.
 \end {enumerate}
 
 \item Question 3
