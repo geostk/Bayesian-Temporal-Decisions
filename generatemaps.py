@@ -33,10 +33,11 @@ def PointsAndReadings(mappo, start, actionseq):
 
 	cellfrom = start
 	for i in range(0, 100):
-		latest = tuple(TransitionModel(mappo, cellfrom, actionseq[i]))
-		points.append(latest)
-		readings.append(ObservationModel(mappo[latest]))
-		cellfrom = latest
+		latest,throwaway = TransitionModel(mappo, cellfrom, actionseq[i])
+		tlatest = tuple(latest)
+		points.append(tlatest)
+		readings.append(ObservationModel(mappo[tlatest]))
+		cellfrom = tlatest
 
 	return points,readings
 
