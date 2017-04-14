@@ -29,17 +29,25 @@ def TransitionModel(mappo, cellfromimmutable, action):
 	else:
 		return None,False
 
-	if cellto[0] <= -1 or cellto[1] <= -1:
+	if OutOfBounds(mappo, cellto):
 		return list(cellfromimmutable),False
-	elif cellto[0] >= np.shape(mappo)[0] or cellto[1] >= np.shape(mappo)[1]:
-		return list(cellfromimmutable),False
-	elif (mappo[tuple(cellto)] == 'B'):
+
+	if terrain[tuple(cellto)] == 'B':
 		return list(cellfromimmutable),False
 
 	if random.randrange(0, 100) < 90:
 		return cellto,True
 	else:
 		return list(cellfromimmutable),True 
+
+def OutOfBounds(mappo, cell):
+	if cell[0] <= -1 or cell[1] <= -1:
+		return True
+	elif cell[0] >= np.shape(mappo)[0] or cell[1] >= np.shape(mappo)[1]:
+		return True
+
+	return False
+	
 
 def ObservationModel(reading):
 	prob = random.randrange(0, 100)
@@ -64,9 +72,22 @@ def Filter(mappo, action, reading):
 	for x in range(0, np.shape(mappo)[0]):
 		for y in range(0, np.shape(mappo)[1]):
 			nextplace,chanceymove = TransitionModel(mappo, (x,y), action)
+			nptup = tuple(nextplace)
 			if chanceymove:
+
 				mappo[(x,y)] *= .1
-				mappo[tuple(nextplace)] *= .9
+				if reading == terrain[(x,y)]:
+					mappo[(x,y)] *= .9
+				else:
+					mappo[(x,y)] *= .05
+
+				mappo[nptup] *= .9
+				if reading == terrain[nptup]:
+					mappo[nptup] *= .9
+				else:
+					mappo[nptup] *= .05
+					
+
 				#currentbelief = mappo[(x,y)] * .1
 				#nextbelief = mappo[tuple(nextplace)] * .9
 			#else: 
