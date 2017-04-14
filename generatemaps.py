@@ -19,14 +19,43 @@ def startingplace(mappo):
 	else:
 		return (indX,indY)
 
-def randomactions(howmany):
+def findnonblockingdirection(mappo, cellfrom, paIndex):
+	actionseq = []
+	pa = ['U', 'D', 'L', 'R']
+
+	return None
+
+def applydirection(cellfrom, direction, reverse):
+	
+	return None
+
+#goes in one direction until it hits a block, then switches, etc.
+def generatepath(mappo, cellfrom):
 	actionseq = []
 	possibleactions = ['U', 'D', 'L', 'R']
 
-	for _ in itertools.repeat(None, howmany):
+
+	for _ in itertools.repeat(None, 100):
 		actionseq.append(possibleactions[random.randrange(0,4)])
 
 	return actionseq
+
+'''cellap = list(cellfrom)
+	direction = possibleactions[random.randrange(0,4)]
+
+	for i in range(0, 100):
+		
+		if direction == 'R':
+			cellap[1] += 1
+		elif direction == 'L':
+			cellap[1] -= 1
+		elif direction == 'U':
+			cellap[0] += 1
+		elif direction == 'D':
+			cellap[0] -= 1
+		
+		if mappo[tuple(cellap)] == 'B':
+			direction = findnonblockingdirection(mappo, '''
 
 def PointsAndReadings(mappo, start, actionseq):
 	points = [] 
@@ -45,7 +74,7 @@ def PointsAndReadings(mappo, start, actionseq):
 def generatefiles(mappo, mapID, howmany):
 	for i in range(0, howmany):
 		sp = startingplace(mappo)
-		actionseq = randomactions(100)
+		actionseq = generatepath(mappo, sp)
 		points, readings = PointsAndReadings(mappo, sp, actionseq)
 		smappo = str(mappo).replace('\'\n','\'')	
 

@@ -19,15 +19,15 @@ def TransitionModel(mappo, cellfromimmutable, action):
 	cellfrom = list(cellfromimmutable)
 	cellto = cellfrom #cellto changes when cellfrom changes. bc python
 	if action == 'R':
-		cellto[0] += 1
-	elif action == 'L':
-		cellto[0] -= 1
-	elif action == 'U':
 		cellto[1] += 1
-	elif action == 'D':
+	elif action == 'L':
 		cellto[1] -= 1
+	elif action == 'U':
+		cellto[0] += 1
+	elif action == 'D':
+		cellto[0] -= 1
 	else:
-		return nil,False
+		return None,False
 
 	if cellto[0] <= -1 or cellto[1] <= -1:
 		return list(cellfromimmutable),False
@@ -69,9 +69,9 @@ def Filter(mappo, action, reading):
 				mappo[tuple(nextplace)] *= .9
 				#currentbelief = mappo[(x,y)] * .1
 				#nextbelief = mappo[tuple(nextplace)] * .9
-			else: 
-				mappo[(x,y)] *= 1
-				mappo[tuple(nextplace)] *= 0
+			#else: 
+				#mappo[(x,y)] *= 1
+				#mappo[tuple(nextplace)] *= 0
 				#currentbelief = mappo[(x,y)] * 1
 				#nextbelief = mappo[tuple(nextplace)] * 0
 
