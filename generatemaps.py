@@ -47,9 +47,10 @@ def generatefiles(mappo, mapID, howmany):
 		sp = startingplace(mappo)
 		actionseq = randomactions(100)
 		points, readings = PointsAndReadings(mappo, sp, actionseq)
-	
+		smappo = str(mappo).replace('\'\n','\'')	
+
 		target = open("output" + str(mapID) + "-" + str(i) + ".txt", "w")
-		target.write("mapID: " + str(mapID) + "; path " + str(i) + "\n" + str(mappo) + "\n")
+		target.write("mapID: " + str(mapID) + "; path " + str(i) + "\n" + smappo + "\n")
 		target.write("x_0y_0: " + str(sp) + "\n")
 		target.write("x_iy_i: " + str(points) + "\n")
 		target.write("\\alpha_i: " + str(actionseq) + "\n")
