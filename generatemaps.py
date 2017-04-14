@@ -2,27 +2,28 @@ import numpy as np
 import itertools
 import random
 from filtrieren import TransitionModel, ObservationModel
+np.set_printoptions(threshold='nan')
 
 def generatemap():
-	terrains = ['N']*40 + ['H']*20 + ['T']*20 + ['B']*10
+	terrains = ['N']*5000 + ['H']*2000 + ['T']*2000 + ['B']*1000
 	random.shuffle(terrains)
-	GrossesGelaende = np.reshape(np.asmatrix(terrains), (9, 10))
+	GrossesGelaende = np.reshape(np.asmatrix(terrains), (100, 100))
 	return GrossesGelaende
 
 def startingplace(mappo):
-	indX = random.randrange(0,9)
-	indY = random.randrange(0,9)
+	indX = random.randrange(0,np.shape(mappo)[0])
+	indY = random.randrange(0,np.shape(mappo)[1])
 
 	if mappo[indX,indY] == 'B':
 		return startingplace(mappo)
 	else:
 		return (indX,indY)
 
-def randomactions():
+def randomactions(howmany):
 	actionseq = []
 	possibleactions = ['U', 'D', 'L', 'R']
 
-	for _ in itertools.repeat(None, 100):
+	for _ in itertools.repeat(None, howmany):
 		actionseq.append(possibleactions[random.randrange(0,4)])
 
 	return actionseq
@@ -32,7 +33,7 @@ def PointsAndReadings(mappo, start, actionseq):
 	readings = []
 
 	cellfrom = start
-	for i in range(0, 100):
+	for i in range(0, len(actionseq)):
 		latest,throwaway = TransitionModel(mappo, cellfrom, actionseq[i])
 		tlatest = tuple(latest)
 		points.append(tlatest)
@@ -41,10 +42,10 @@ def PointsAndReadings(mappo, start, actionseq):
 
 	return points,readings
 
-def generatefiles(mappo, mapID):
-	for i in range(0, 10):
+def generatefiles(mappo, mapID, howmany):
+	for i in range(0, howmany):
 		sp = startingplace(mappo)
-		actionseq = randomactions()
+		actionseq = randomactions(100)
 		points, readings = PointsAndReadings(mappo, sp, actionseq)
 	
 		target = open("output" + str(mapID) + "-" + str(i) + ".txt", "w")
@@ -58,7 +59,7 @@ def generatefiles(mappo, mapID):
 
 def main():
 	for i in range(0, 10):
-		generatefiles(generatemap(), i)
+		generatefiles(generatemap(), i, 10)
 
 if __name__ == "__main__":
 	main()
