@@ -23,7 +23,7 @@ def randomactions():
 	possibleactions = ['U', 'D', 'L', 'R']
 
 	for _ in itertools.repeat(None, 100):
-		actionseq.append(possibleactions[random.randrange(0,3)])
+		actionseq.append(possibleactions[random.randrange(0,4)])
 
 	return actionseq
 
