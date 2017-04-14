@@ -90,11 +90,16 @@ def normalize(self):
 
 def main():
 	map1 = Filter(priya, given_actions[0], given_readings[0])
-	#map2 = Filter(map1, given_actions[1], given_readings[1])
-	#map3 = Filter(map2, given_actions[2], given_readings[2])
-	#map4 = Filter(map3, given_actions[3], given_readings[3])
-
 	print map1
+
+	map2 = Filter(map1, given_actions[1], given_readings[1])
+	print map2
+
+	map3 = Filter(map2, given_actions[2], given_readings[2])
+	print map3
+
+	map4 = Filter(map3, given_actions[3], given_readings[3])
+	print map4
 
 #print TransitionModel((2,0), 'Right') #cannot do so, other is blocked
 #print ObservationModel(terrain[2,0])
